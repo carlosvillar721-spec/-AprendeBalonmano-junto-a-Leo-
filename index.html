@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Aprende Balonmano! - Infografía para Niños</title>
+    
+    <!-- Configuración PWA móvil -->
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- Manifest embebido mediante Data URI -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkFwcmVuZGUgQmFsb25tYW5vIE5pbm9zIiwKICAic2hvcnRfbmFtZSI6ICJCYWxvbm1hbm9OaW5vcyIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiaXNvbGF0ZWRfYXBwIjogdHJ1ZSwK  ImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI0ZGRjlGMCIsCiAgInRoZW1lX2NvbG9yIjogIiNGRjZCMzUiCn0=">
+
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts optimizadas para lectura infantil -->
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --naranja: #FF6B35;
+            --amarillo: #FFD60A;
+            --azul: #1B74E4;
+            --verde: #2ECC71;
+            --rojo: #E74C3C;
+            --fondo: #FFF9F0;
+            --texto: #2C3E50;
+        }
+
+        body {
+            background-color: var(--fondo);
+            color: var(--texto);
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.2rem;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Baloo 2', cursive;
+            font-weight: 800;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px; left: 0;
+            background: var(--azul); color: white;
+            padding: 8px; z-index: 100;
+            transition: top 0.2s;
+        }
+        .skip-link:focus { top: 0; }
+
+        .hero-kids {
+            background: var(--amarillo);
+            padding: 50px 0;
+            border-radius: 0 0 30px 30px;
+            border-bottom: 6px solid var(--naranja);
+        }
+
+        /* ANIMACIONES Y EFECTOS HOVER CRITERIO PRISMIC */
+        .mascota-leon {
+            font-size: 5rem;
+            display: inline-block;
+            animation: bounce 2s infinite alternate;
+        }
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-12px); }
+        }
+
+        .mascota-guia:hover .mascota-leon {
+            animation: wiggle 0.5s ease infinite;
+        }
+        @keyframes wiggle {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(4deg); }
+            75% { transform: rotate(-4deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        /* Efecto Prismic: Lift & Flat Shadow */
+        .card-kids {
+            background: white;
+            border: 3px solid var(--texto);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 0 var(--texto);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        box-shadow 0.3s ease;
+        }
+        .card-kids:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 14px 0 var(--texto);
+        }
+
+        /* Efecto Prismic: Sequential Shift lateral */
+        .step-kids {
+            background: white;
+            border: 3px solid var(--texto);
+            border-radius: 15px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .step-kids:hover {
+            transform: translateX(8px);
+            border-color: var(--naranja);
+        }
+
+        .step-number {
+            background: var(--naranja);
+            color: white;
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.5rem;
+            width: 44px; height: 44px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+            border: 3px solid var(--texto);
+            flex-shrink: 0;
+        }
+
+        /* Cancha Accesible y Colorida */
+        .cancha-box {
+            background: white;
+            border: 3px solid var(--texto);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 8px 0 var(--texto);
+        }
+
+        .campo-svg {
+            background: #2ecc71;
+            border: 4px solid white;
+            border-radius: 12px;
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            max-height: 260px;
+        }
+
+        /* Botones del Quiz con área táctil amplia */
+        .btn-kid-option {
+            background: white;
+            border: 3px solid var(--texto);
+            border-radius: 12px;
+            padding: 14px;
+            width: 100%;
+            margin-bottom: 12px;
+            font-weight: 700;
+            min-height: 48px;
+            transition: all 0.2s ease;
+        }
+        .btn-kid-option:hover:not([disabled]) {
+            background: #FFF5CC;
+            transform: scale(1.01);
+        }
+        .btn-kid-option.correct { background: var(--verde) !important; color: white !important; }
+        .btn-kid-option.wrong { background: var(--rojo) !important; color: white !important; }
+    </style>
+</head>
+<body>
+
+    <a href="#contenido-kids" class="skip-link">Saltar al contenido divertido</a>
+
+    <!-- HERO PRINCIPAL -->
+    <header class="hero-kids text-center">
+        <div class="container">
+            <div class="mascota-guia mb-2">
+                <span class="mascota-leon" role="img" aria-label="Mascota León Animada">🦁</span>
+            </div>
+            <h1 class="display-4 text-dark mb-2">¡Aprende Balonmano!</h1>
+            <span class="badge bg-danger fs-6 px-3 py-2 rounded-pill">¡Mini Guía Interactiva!</span>
+        </div>
+    </header>
+
+    <main id="contenido-kids" class="container my-5" style="max-width: 800px;">
+        
+        <!-- BURBUJA GUÍA DEL PERSONAJE -->
+        <section class="mb-5 text-center">
+            <div class="p-4 bg-white rounded-4 border border-3 border-dark" style="position: relative;">
+                <h2 class="h4 mb-0">¡Hola! Soy Leo. ¿Sabías que el balonmano es un deporte espectacular donde solo usamos nuestras manos para jugar? ¡Acompáñame a conocerlo! 🤾‍♂️</h2>
+            </div>
+        </section>
+
+        <!-- IDEA CENTRAL DEL JUEGO -->
+        <section class="mb-5">
+            <div class="card-kids text-center" style="background: var(--naranja); color: white;">
+                <h3 class="h2 mb-2">¡La Idea Central del Juego! 🏆</h3>
+                <div class="display-1 my-2" style="font-family: 'Baloo 2'; font-weight: 800;">¡GOL!</div>
+                <p class="lead mb-0 fw-bold">El objetivo principal en el balonmano es introducir el balón en la portería del equipo contrario la mayor cantidad de veces para ganar el partido.</p>
+            </div>
+        </section>
+
+        <!-- DATOS CLAVE EN RECUADROS -->
+        <section class="mb-5">
+            <h3 class="text-center mb-4">4 Datos Súper Importantes 📑</h3>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card-kids h-100">
+                        <h4 class="text-primary">👥 Equipos en Cancha</h4>
+                        <p class="mb-0">Cada equipo juega con <strong>7 integrantes activos</strong> al mismo tiempo: seis jugadores distribuidos en el campo y un portero protegiendo el arco.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-kids h-100">
+                        <h4 class="text-warning">🏃‍♂️ Regla de los Pasos</h4>
+                        <p class="mb-0">Puedes dar como máximo <strong>3 pasos consecutivos</strong> corriendo con el balón en tus manos antes de dar un pase o lanzar a portería.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-kids h-100">
+                        <h4 class="text-danger">⏱️ Tiempo de Juego</h4>
+                        <p class="mb-0">Un partido oficial dura <strong>dos tiempos de 30 minutos</strong> cada uno, contando con un merecido descanso intermedio de 10 minutos.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-kids h-100">
+                        <h4 class="text-success">🧤 El Área del Portero</h4>
+                        <p class="mb-0">Ningún jugador de campo puede pisar la zona delimitada de los <strong>6 metros</strong>. ¡Es el espacio exclusivo de protección del guardameta!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PASOS PARA ANOTAR (CON EFECTO SHIFT LATERAL HOVER) -->
+        <section class="mb-5">
+            <h3 class="text-center mb-4">Tres Pasos Rápidos para Hacer un Gol 💥</h3>
+            <div class="d-flex flex-column gap-3">
+                <div class="step-kids">
+                    <div class="step-number">1</div>
+                    <p class="mb-0 fw-bold">¡Controla y sujeta firmemente la pelota utilizando únicamente las yemas de tus dedos!</p>
+                </div>
+                <div class="step-kids">
+                    <div class="step-number">2</div>
+                    <p class="mb-0 fw-bold">¡Avanza dando tres pasos rápidos para superar la línea de los defensores rivales!</p>
+                </div>
+                <div class="step-kids">
+                    <div class="step-number">3</div>
+                    <p class="mb-0 fw-bold">¡Salta con fuerza por el aire y lanza directo al arco antes de caer al suelo!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAPA VECTORIAL DE LA CANCHA ENTENDIBLE -->
+        <section class="mb-5">
+            <h3 class="text-center mb-3">Conoce Nuestra Cancha de Juego 🏟️</h3>
+            <div class="cancha-box">
+                <svg viewBox="0 0 440 220" class="campo-svg">
+                    <!-- Línea central de juego -->
+                    <line x1="220" y1="10" x2="220" y2="210" stroke="white" stroke-width="3"/>
+                    <circle cx="220" cy="110" r="22" fill="none" stroke="white" stroke-width="3"/>
+                    
+                    <!-- Área del portero izquierda (Línea continua de 6 metros) -->
+                    <path d="M 20,45 L 45,45 A 65,65 0 0,1 85,110 A 65,65 0 0,1 45,175 L 20,175" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="3"/>
+                    <!-- Portería izquierda en Rojo -->
+                    <rect x="10" y="95" width="10" height="30" fill="var(--rojo)" stroke="white" stroke-width="2"/>
+                    
+                    <!-- Área del portero derecha (Línea continua de 6 metros) -->
+                    <path d="M 420,45 L 395,45 A 65,65 0 0,0 355,110 A 65,65 0 0,0 395,175 L 420,175" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="3"/>
+                    <!-- Portería derecha en Rojo -->
+                    <rect x="420" y="95" width="10" height="30" fill="var(--rojo)" stroke="white" stroke-width="2"/>
+
+                    <!-- Anotaciones visuales claras y legibles -->
+                    <text x="35" y="114" fill="white" font-family="'Baloo 2'" font-weight="bold" font-size="11">ÁREA 6m</text>
+                    <text x="365" y="114" fill="white" font-family="'Baloo 2'" font-weight="bold" font-size="11">ÁREA 6m</text>
+                    <text x="145" y="195" fill="white" font-family="'Nunito'" font-weight="bold" font-size="13">Medida Total del Campo: 40m x 20m</text>
+                </svg>
+            </div>
+        </section>
+
+        <!-- TRIVIA INTERACTIVA -->
+        <section id="quiz-seccion" class="card-kids" style="background: #E8F8F5;">
+            <h3 class="text-center text-success mb-2">¡La Trivia Divertida de Leo! 🧠</h3>
+            <p class="text-center small mb-4 text-muted">Responde las preguntas y pon a prueba todo lo que aprendiste hoy.</p>
+            
+            <div id="trivia-container">
+                <!-- Inyección dinámica mediante JavaScript -->
+            </div>
+            
+            <div class="text-center mt-3">
+                <h4 class="fs-5">Estrellas obtenidas: <span id="puntos-niños" class="text-warning">0</span> / 3 ⭐</h4>
+                <button id="btn-reinicio-kids" class="btn btn-dark rounded-pill mt-2 d-none" onclick="reiniciarTrivia()">¡Jugar de nuevo!</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER ACADÉMICO -->
+    <footer class="text-center py-4 bg-dark text-white rounded-top-4">
+        <div class="container">
+            <p class="mb-1">Creado por: <strong>Carlos Santos Villar Herrera</strong></p>
+            <p class="mb-0" style="font-size: 0.85rem; opacity: 0.7;">Universidad Tecnológica del Perú (UTP) · 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        const preguntasNiños = [
+            { q: "¿Con qué parte de la mano debes sujetar y controlar la pelota?", o: ["A) Con la palma completa golpeándola", "B) Con las yemas de tus dedos para mayor control", "C) Con el puño cerrado con fuerza"], c: 1 },
+            { q: "¿Cuántos pasos máximos puedes dar corriendo con el balón en las manos?", o: ["A) Puedes dar hasta 10 pasos", "B) Únicamente se permiten 3 pasos", "C) Ninguno, debes quedarte quieto"], c: 1 },
+            { q: "¿Quién es el único integrante autorizado para pisar el área de 6 metros?", o: ["A) El atacante central del equipo", "B) El árbitro del encuentro", "C) El guardameta o portero"], c: 2 }
+        ];
+
+        let puntos = 0; let respondidasKids = 0;
+
+        function cargarTrivia() {
+            const container = document.getElementById('trivia-container'); container.innerHTML = "";
+            preguntasNiños.forEach((item, index) => {
+                let opcionesHTML = "";
+                item.o.forEach((opc, idx) => {
+                    opcionesHTML += `<button class="btn-kid-option" onclick="evaluarPregunta(this, ${index}, ${idx})">${opc}</button>`;
+                });
+                container.innerHTML += `
+                    <div class="mb-4 p-3 bg-white rounded-4 border border-2 border-dark">
+                        <h4 class="h5 mb-3">${index + 1}. ${item.q}</h4>
+                        <div>${opcionesHTML}</div>
+                    </div>
+                `;
+            });
+        }
+
+        function evaluarPregunta(btn, qIdx, oIdx) {
+            const correctaIdx = preguntasNiños[qIdx].c;
+            const grupoBotones = btn.parentElement.querySelectorAll('.btn-kid-option');
+            grupoBotones.forEach(b => b.disabled = true);
+
+            if(oIdx === correctaIdx) {
+                btn.classList.add('correct');
+                puntos++;
+                document.getElementById('puntos-niños').innerText = puntos;
+            } else {
+                btn.classList.add('wrong');
+                grupoBotones[correctaIdx].classList.add('correct');
+            }
+
+            respondidasKids++;
+            if(respondidasKids === preguntasNiños.length) {
+                document.getElementById('btn-reinicio-kids').classList.remove('d-none');
+            }
+        }
+
+        function reiniciarTrivia() {
+            puntos = 0; respondidasKids = 0;
+            document.getElementById('puntos-niños').innerText = puntos;
+            document.getElementById('btn-reinicio-kids').classList.add('d-none');
+            cargarTrivia();
+        }
+
+        document.addEventListener('DOMContentLoaded', cargarTrivia);
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                const code = `self.addEventListener('install', e => self.skipWaiting()); self.addEventListener('fetch', e => e.respondWith(fetch(e.request).catch(() => new Response("Offline"))));`;
+                const blob = new Blob([code], { type: 'application/javascript' });
+                navigator.serviceWorker.register(URL.createObjectURL(blob));
+            });
+        }
+    </script>
+</body>
+</html>
